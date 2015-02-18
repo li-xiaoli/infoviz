@@ -115,7 +115,24 @@
         }
       }
 
-      plot(2010);
+      var min_year = 2010;
+      var max_year = 2014;
+
+      var year = min_year;
+      plot(year);
+
+    d3.select("body")
+      .on("keydown", function() {
+        if (d3.event.keyCode === 39) { // ->
+          year = Math.min(max_year, year + 1);
+        }
+        else if (d3.event.keyCode === 37) { // <-
+          year = Math.max(min_year, year - 1);
+        }
+
+        d3.select("svg").remove();
+        plot(year);
+      });
     </script>
   </body>
 </html>
